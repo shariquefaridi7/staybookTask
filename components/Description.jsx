@@ -20,21 +20,22 @@ const Description = ({ desc }) => {
 
   useEffect(() => {
     setData(...desc);
+    setFetch(...desc);
   }, [desc]);
 
   const handleChange = (e) => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
+  const handleCancel = () => {
+    setData(fetch);
+  };
   const handleSave = async () => {
     //await addDoc(collection(db, "desc"), data);
     setFetch(data);
     await updateDoc(doc(db, "desc", "Et68EEjvmUYXw5DrhODn"), data);
   };
 
-  const handleCancel = () => {
-    setData(fetch);
-  };
+
 
   const handleEit1 = () => {
     setIsEdited1((prev) => !prev);

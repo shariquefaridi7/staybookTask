@@ -13,8 +13,15 @@ const Address = ({ address }) => {
     email: "",
   });
 
+  const [isEdited1, setIsEdited1] = useState(false);
+  const [isEdited2, setIsEdited2] = useState(false);
+  const [isEdited3, setIsEdited3] = useState(false);
+  const [isEdited4, setIsEdited4] = useState(false);
+  const [isEdited5, setIsEdited5] = useState(false);
+
   useEffect(() => {
     setData(...address);
+    setFetch(...address);
   }, [address]);
 
   const handleChange = (e) => {
@@ -32,11 +39,7 @@ const Address = ({ address }) => {
     await updateDoc(doc(db, "address", "JpW8bHQWKKFaXqEN7wOu"), data);
   };
 
-  const [isEdited1, setIsEdited1] = useState(false);
-  const [isEdited2, setIsEdited2] = useState(false);
-  const [isEdited3, setIsEdited3] = useState(false);
-  const [isEdited4, setIsEdited4] = useState(false);
-  const [isEdited5, setIsEdited5] = useState(false);
+
 
   const handleEit1 = () => {
     setIsEdited1((prev) => !prev);

@@ -15,12 +15,25 @@ const Ari_Description = ({ ariDesc, ariAttri }) => {
   });
 
   const [checkboxes, setCheckboxes] = useState([]);
+  const [fetch, setFetch] = useState({});
+  const [isEdited1, setIsEdited1] = useState(false);
+  const [isEdited2, setIsEdited2] = useState(false);
+  const [isEdited3, setIsEdited3] = useState(false);
+  const [isEdited4, setIsEdited4] = useState(false);
+  const [isEdited5, setIsEdited5] = useState(false);
+
 
   useEffect(() => {
     //insertData2();
 
     setCheckboxes(ariAttri);
   }, [ariAttri]);
+
+  useEffect(() => {
+    setData(...ariDesc);
+    setFetch(...ariDesc);
+  }, [ariDesc]);
+
 
   const handleCheckboxChange = async (arr, index) => {
     const updatedCheckboxes = [...checkboxes];
@@ -30,17 +43,9 @@ const Ari_Description = ({ ariDesc, ariAttri }) => {
     await updateDoc(doc(db, "ariAttribute", arr.id), arr);
   };
 
-  const [fetch, setFetch] = useState({});
 
-  useEffect(() => {
-    setData(...ariDesc);
-  }, [ariDesc]);
 
-  const [isEdited1, setIsEdited1] = useState(false);
-  const [isEdited2, setIsEdited2] = useState(false);
-  const [isEdited3, setIsEdited3] = useState(false);
-  const [isEdited4, setIsEdited4] = useState(false);
-  const [isEdited5, setIsEdited5] = useState(false);
+
 
   //input field
   const handleChange = (e) => {
@@ -48,13 +53,13 @@ const Ari_Description = ({ ariDesc, ariAttri }) => {
   };
 
   const handleCancel = () => {
-    console.log("hello");
 
     setData(fetch);
   };
 
   const handleSave = async () => {
     // await addDoc(collection(db, "ariDesc"), data);
+
     setFetch(data);
     await updateDoc(doc(db, "ariDesc", "ucaRXLiX5n17Xqjgky7z"), data);
   };
